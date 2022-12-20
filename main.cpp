@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-inline const char* _url = "mongodb://<>SeriKbeltR<>:><><S_EKkrikneltR<>TR>1926><@195.175.200.2:41112/?authSource=SERIKBELTR";
+inline const char* _url = "";
 
 
 int main(int argc, char *argv[])
