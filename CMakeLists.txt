@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
+set(bsoncxx_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdParty/mongo/lib/cmake/bsoncxx-3.7.0)
+set(mongocxx_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdParty/mongo/lib/cmake/mongocxx-3.7.0)
 
 
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
@@ -47,6 +49,16 @@ set_target_properties(appSerikBLDDesktopQML PROPERTIES
 
 target_link_libraries(appSerikBLDDesktopQML
     PRIVATE Qt6::Quick)
+
+
+find_package(mongocxx REQUIRED)
+find_package(bsoncxx REQUIRED)
+include_directories(${LIBMONGOCXX_INCLUDE_DIR})
+include_directories(${LIBBSONCXX_INCLUDE_DIR})
+
+target_link_libraries(appSerikBLDDesktopQML PRIVATE mongo::bsoncxx_shared)
+
+target_link_libraries(appSerikBLDDesktopQML PRIVATE mongo::mongocxx_shared)
 
 install(TARGETS appSerikBLDDesktopQML
     BUNDLE DESTINATION .
