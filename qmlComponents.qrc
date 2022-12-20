@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>QML/AnaMenu.qml</file>
+    </qresource>
+</RCC>
