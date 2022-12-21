@@ -9,9 +9,7 @@ Window {
 
 
     AnaMenu {
-
         anchors.fill: parent
-
     }
 
 }

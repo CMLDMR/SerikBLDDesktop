@@ -3,7 +3,7 @@
 
 #include <mongocxx/instance.hpp>
 
-
+#include <serikbldbackend.h>
 #include <iostream>
 
 inline const char* _url = "";
@@ -16,6 +16,10 @@ int main(int argc, char *argv[])
     mongocxx::instance ins{};
 
     QQmlApplicationEngine engine;
+
+    engine.addImportPath("qrc:/QML");
+
+    SerikBLDBackend::registerQML();
 
     const QUrl url(u"qrc:/SerikBLDDesktopQML/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

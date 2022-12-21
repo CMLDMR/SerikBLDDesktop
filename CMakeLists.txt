@@ -22,7 +22,13 @@ file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 source_group("Header Files" FILES ${HEADERS})
 source_group("Source Files" FILES ${SOURCES})
 
+list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/QML")
 
+set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
+    CACHE STRING "Qt Creator extra qml import paths"
+    FORCE
+)
 
 qt_add_resources(QT_RESOURCES qmlComponents.qrc)
 
