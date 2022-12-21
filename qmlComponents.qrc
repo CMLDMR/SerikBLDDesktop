@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>QML/AnaMenu.qml</file>
+        <file>QML/PersonelManager.qml</file>
     </qresource>
 </RCC>

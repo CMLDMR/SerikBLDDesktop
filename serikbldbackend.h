@@ -6,12 +6,24 @@
 class SerikBLDBackend : public QQuickItem
 {
     Q_OBJECT
+    Q_PROPERTY(QString currentPage READ currentPage WRITE setCurrentPage RESET resetCurrentPage NOTIFY currentPageChanged)
+
 public:
-    SerikBLDBackend();
+    SerikBLDBackend(QQuickItem* parent = nullptr);
 
     static void registerQML();
 
+    QString currentPage() const;
+    Q_INVOKABLE void setCurrentPage(const QString &newCurrentPage);
+    void resetCurrentPage();
+
 signals:
+
+
+    void currentPageChanged();
+
+private:
+    QString mCurrentPage{"qrc:/QML/AnaMenu.qml"};
 
 };
 
