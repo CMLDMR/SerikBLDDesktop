@@ -36,7 +36,7 @@ Rectangle{
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    pageChanged("qrc:/QML/PersonelManager.qml");
+                    pageChanged("qrc:/PersonelManager/PersonelManager.qml");
                 }
             }
 
