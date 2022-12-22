@@ -3,6 +3,7 @@
 
 #include <QQuickItem>
 
+
 class SerikBLDBackend : public QQuickItem
 {
     Q_OBJECT
@@ -17,6 +18,7 @@ public:
     Q_INVOKABLE void setCurrentPage(const QString &newCurrentPage);
     void resetCurrentPage();
 
+
 signals:
 
 
@@ -24,6 +26,8 @@ signals:
 
 private:
     QString mCurrentPage{"qrc:/QML/AnaMenu.qml"};
+
+
 
 };
 

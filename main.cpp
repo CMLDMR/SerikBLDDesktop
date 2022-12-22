@@ -4,9 +4,9 @@
 #include <mongocxx/instance.hpp>
 
 #include <serikbldbackend.h>
+#include <globalconstvar.h>
+#include <PersonelManager/personelmodel.h>
 #include <iostream>
-
-inline const char* _url = "";
 
 
 int main(int argc, char *argv[])
@@ -20,6 +20,13 @@ int main(int argc, char *argv[])
     engine.addImportPath("qrc:/QML");
 
     SerikBLDBackend::registerQML();
+    PersonelModel::registerType();
+
+
+    qmlRegisterSingletonType<GlobalConstVar>("com.serik.global", 1 , 0 , "Global" , GlobalConstVar::createSingletonInstance );
+
+
+
 
     const QUrl url(u"qrc:/SerikBLDDesktopQML/main.qml"_qs);
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

@@ -1,4 +1,5 @@
 #include "serikbldbackend.h"
+
 #include <QDebug>
 
 SerikBLDBackend::SerikBLDBackend(QQuickItem *parent)
@@ -31,3 +32,4 @@ void SerikBLDBackend::resetCurrentPage()
 {
     setCurrentPage({"qrc:/QML/AnaMenu.qml"}); // TODO: Adapt to use your actual default value
 }
+

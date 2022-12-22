@@ -1,6 +1,7 @@
 import QtQuick
 import "qrc:/../QML"
 import com.serik 1.0
+import com.serik.global 1.0
 
 Window {
     width: 1024
