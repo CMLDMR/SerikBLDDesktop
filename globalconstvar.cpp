@@ -41,8 +41,7 @@ GlobalConstVar *GlobalConstVar::createSingletonInstance(QQmlEngine *engine, QJSE
 PersonelModel *GlobalConstVar::getPersonelModel()
 {
     if( !mPersonelModel ){
-        mCollection = mDB.collection("Personel");
-        mPersonelModel = std::make_unique<PersonelModel>(&mCollection);
+        mPersonelModel = std::make_unique<PersonelModel>(&mDB);
     }
     return mPersonelModel.get();
 }

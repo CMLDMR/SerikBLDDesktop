@@ -2,13 +2,13 @@
 #define PERSONELMODEL_H
 
 #include <QAbstractListModel>
-#include <mongocxx/collection.hpp>
+#include <mongocxx/database.hpp>
 #include <vector>
 
 class PersonelModel : public QAbstractListModel
 {
 public:
-    PersonelModel(mongocxx::collection* _collection = nullptr, QObject *parent = nullptr);
+    PersonelModel(mongocxx::database* _database = nullptr, QObject *parent = nullptr);
 
     static void registerType();
 
@@ -20,8 +20,10 @@ public:
 
 
 private:
-    mongocxx::collection* mCollection;
+    mongocxx::database* mDB;
 
+
+    int personelCount;
 };
 
 #endif // PERSONELMODEL_H

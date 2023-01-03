@@ -1,10 +1,17 @@
 #include "personelmodel.h"
 #include <QQmlEngine>
 
-PersonelModel::PersonelModel(mongocxx::collection *_collection, QObject *parent)
-    : mCollection{_collection},QAbstractListModel{parent}
+
+using bsoncxx::builder::basic::document;
+
+PersonelModel::PersonelModel(mongocxx::database *_database, QObject *parent)
+    : mDB{_database},QAbstractListModel{parent}
 {
 
+    personelCount = mDB->collection("Personel").count_documents(document{}.view());
+
+    beginResetModel();
+    endResetModel();
 }
 
 void PersonelModel::registerType()
@@ -15,7 +22,7 @@ void PersonelModel::registerType()
 
 int PersonelModel::rowCount(const QModelIndex &parent) const
 {
-    return 15;
+    return personelCount;
 }
 
 QVariant PersonelModel::data(const QModelIndex &index, int role) const
