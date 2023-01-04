@@ -1,14 +1,21 @@
 #include "personelmodel.h"
 #include <QQmlEngine>
-
+#include "core/mongodb.h"
+#include "core/item.h"
+#include <QDebug>
 
 using bsoncxx::builder::basic::document;
 
-PersonelModel::PersonelModel(mongocxx::database *_database, QObject *parent)
+PersonelModel::PersonelModel(Core::MongoDB *_database, QObject *parent)
     : mDB{_database},QAbstractListModel{parent}
 {
 
-    personelCount = mDB->collection("Personel").count_documents(document{}.view());
+    Core::Item item;
+
+    qDebug() << item << "";
+
+
+    personelCount = mDB->Database().collection("Personel").count_documents(document{}.view());
 
     beginResetModel();
     endResetModel();

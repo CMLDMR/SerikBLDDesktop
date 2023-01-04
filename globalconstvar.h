@@ -5,10 +5,8 @@
 #include <QQmlEngine>
 #include <QJSEngine>
 #include <memory>
-#include <mongocxx/client.hpp>
-#include <mongocxx/uri.hpp>
-#include <mongocxx/database.hpp>
 
+#include "core/mongodb.h"
 
 class PersonelModel;
 
@@ -39,9 +37,7 @@ signals:
 private:
     std::unique_ptr<PersonelModel> mPersonelModel = nullptr;
 
-    mongocxx::client* mClient;
-    mongocxx::database mDB;
-    mongocxx::collection mCollection;
+    Core::MongoDB* mMongoDB;
 
 };
 

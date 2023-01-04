@@ -5,10 +5,15 @@
 #include <mongocxx/database.hpp>
 #include <vector>
 
+namespace Core{
+class MongoDB;
+}
+
+
 class PersonelModel : public QAbstractListModel
 {
 public:
-    PersonelModel(mongocxx::database* _database = nullptr, QObject *parent = nullptr);
+    PersonelModel(Core::MongoDB* _database = nullptr, QObject *parent = nullptr);
 
     static void registerType();
 
@@ -20,7 +25,7 @@ public:
 
 
 private:
-    mongocxx::database* mDB;
+    Core::MongoDB* mDB;
 
 
     int personelCount;
