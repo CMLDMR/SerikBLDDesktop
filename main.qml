@@ -1,11 +1,11 @@
 import QtQuick
-import "qrc:/../QML"
-import com.serik 1.0
-import com.serik.global 1.0
+//import "qrc:/../QML"
+import com.belediye 1.0
+import com.belediye.global 1.0
 
 Window {
-    width: 1024
-    height: 640
+    width: 1280
+    height: 780
     visible: true
     title: qsTr("Hello World")
 

@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Layouts
-import com.serik.global 1.0
+import com.belediye.global 1.0
 
 
 

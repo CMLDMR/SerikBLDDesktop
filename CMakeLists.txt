@@ -7,6 +7,8 @@ project(${PROJECT} VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_CXX_STANDARD 20)
+
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
@@ -17,18 +19,19 @@ set(mongocxx_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../3rdParty/mongo/lib/cmake/mongocx
 
 file(GLOB_RECURSE HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
 file(GLOB_RECURSE SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+file(GLOB_RECURSE QMLFILES ${CMAKE_CURRENT_SOURCE_DIR}/*.qml)
 
 
 source_group("Header Files" FILES ${HEADERS})
 source_group("Source Files" FILES ${SOURCES})
 
-list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
-list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/QML")
+#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/QML")
 
-set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
-    CACHE STRING "Qt Creator extra qml import paths"
-    FORCE
-)
+#set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
+#    CACHE STRING "Qt Creator extra qml import paths"
+#    FORCE
+#)
 
 qt_add_resources(QT_RESOURCES qmlComponents.qrc)
 
@@ -43,7 +46,17 @@ qt_add_qml_module(appSerikBLDDesktopQML
     URI SerikBLDDesktopQML
     VERSION 1.0
     QML_FILES main.qml
+        QML/AnaMenu.qml
+        PersonelManager/PersonelManager.qml
 )
+
+
+target_include_directories(appSerikBLDDesktopQML PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../MSVC2022x64noBoost/include")
+
+target_link_directories(appSerikBLDDesktopQML PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../MSVC2022x64noBoost/lib")
+
+#target_link_libraries(appSerikBLDDesktopQML SerikBLDCore)
+
 
 set_target_properties(appSerikBLDDesktopQML PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
@@ -54,7 +67,7 @@ set_target_properties(appSerikBLDDesktopQML PROPERTIES
 )
 
 target_link_libraries(appSerikBLDDesktopQML
-    PRIVATE Qt6::Quick)
+    PRIVATE Qt6::Quick SerikBLDCore)
 
 
 find_package(mongocxx REQUIRED)

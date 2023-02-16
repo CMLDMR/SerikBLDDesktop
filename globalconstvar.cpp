@@ -1,6 +1,7 @@
 #include "globalconstvar.h"
 #include <PersonelManager/personelmodel.h>
-
+#include <item.h>
+#include "../url.h"
 
 //TODO: std::call_once eklenecek
 
@@ -11,6 +12,14 @@ GlobalConstVar::GlobalConstVar(QObject *parent)
     : QObject{parent}
 {
     mMongoDB = Core::MongoDB::Instance();
+
+    try {
+        mClient = new mongocxx::client(mongocxx::uri(_url));
+    } catch (mongocxx::exception &e) {
+        qDebug() << "Error: No DB Connection: " << e.what();
+    }
+    mongoDB = mClient->database("SERIKBELTR");
+    mDB = new SerikBLDCore::DB(&mongoDB);
 }
 
 GlobalConstVar::~GlobalConstVar()
@@ -32,7 +41,7 @@ GlobalConstVar *GlobalConstVar::createSingletonInstance(QQmlEngine *engine, QJSE
 PersonelModel *GlobalConstVar::getPersonelModel()
 {
     if( !mPersonelModel ){
-        mPersonelModel = std::make_unique<PersonelModel>(mMongoDB);
+        mPersonelModel = std::make_unique<PersonelModel>(mDB);
     }
     return mPersonelModel.get();
 }

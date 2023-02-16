@@ -7,6 +7,11 @@
 #include <memory>
 
 #include "core/mongodb.h"
+#include "db.h"
+
+
+#include <mongocxx/database.hpp>
+#include <mongocxx/client.hpp>
 
 class PersonelModel;
 
@@ -37,8 +42,12 @@ signals:
 private:
     std::unique_ptr<PersonelModel> mPersonelModel = nullptr;
 
+    [[deprecated("Kullanıma Gerek Yok")]]
     Core::MongoDB* mMongoDB;
 
+    SerikBLDCore::DB* mDB;
+    mongocxx::client *mClient;
+    mongocxx::database mongoDB;
 };
 
 #endif // GLOBALCONSTVAR_H

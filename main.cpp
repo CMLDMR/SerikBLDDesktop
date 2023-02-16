@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     PersonelModel::registerType();
 
 
-    qmlRegisterSingletonType<GlobalConstVar>("com.serik.global", 1 , 0 , "Global" , GlobalConstVar::createSingletonInstance );
+    qmlRegisterSingletonType<GlobalConstVar>("com.belediye.global", 1 , 0 , "Global" , GlobalConstVar::createSingletonInstance );
 
 
 

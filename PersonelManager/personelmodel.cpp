@@ -1,39 +1,71 @@
 #include "personelmodel.h"
 #include <QQmlEngine>
 #include "core/mongodb.h"
-#include "core/item.h"
+#include "personel.h"
 #include <QDebug>
 
 using bsoncxx::builder::basic::document;
 
-PersonelModel::PersonelModel(Core::MongoDB *_database, QObject *parent)
-    : mDB{_database},QAbstractListModel{parent}
+PersonelModel::PersonelModel(SerikBLDCore::DB *_database, QObject *parent)
+    : SerikBLDCore::PersonelManager(_database),QAbstractListModel{parent}
 {
 
-    Core::Item item;
+    SerikBLDCore::IK::Personel filter;
+    filter.setBirim("Bilgi İşlem Müdürlüğü");
 
-    qDebug() << item << "";
 
+    this->UpdateList(filter);
 
-    personelCount = mDB->Database().collection("Personel").count_documents(document{}.view());
-
-    beginResetModel();
-    endResetModel();
 }
 
 void PersonelModel::registerType()
 {
-    qmlRegisterType<PersonelModel>("com.serik.personel",1,0, "PersonelModel");
+    qmlRegisterType<PersonelModel>("com.belediye.personel",1,0, "PersonelModel");
 }
 
 
 int PersonelModel::rowCount(const QModelIndex &parent) const
 {
-    return personelCount;
+    return this->List().size();
 }
 
 QVariant PersonelModel::data(const QModelIndex &index, int role) const
 {
-    return QVariant{};
+    if (!index.isValid())
+        return QVariant();
+
+    switch (role) {
+    case PersonelModelRoles::adSoyad:
+        return QVariant{this->List()[index.row()].AdSoyad()};
+        break;
+    }
+
+    return QVariant();
 }
 
+
+
+void PersonelModel::errorOccured(const std::string &errorText)
+{
+}
+
+void PersonelModel::onList(const QVector<SerikBLDCore::IK::Personel> *mlist)
+{
+    beginResetModel();
+
+    personelCount = mlist->size();
+    endResetModel();
+
+}
+
+
+QHash<int, QByteArray> PersonelModel::roleNames() const
+{
+    QHash<int,QByteArray> roles;
+    roles[adSoyad] = "adsoyad";
+    roles[birim] = "birim";
+    roles[status] = "statu";
+    roles[telefon] = "telefon";
+    roles[sifre] = "sifre";
+    return roles;
+}

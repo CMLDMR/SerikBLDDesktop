@@ -25,7 +25,7 @@ signals:
     void currentPageChanged();
 
 private:
-    QString mCurrentPage{"qrc:/QML/AnaMenu.qml"};
+    QString mCurrentPage{"QML/AnaMenu.qml"};
 
 
 

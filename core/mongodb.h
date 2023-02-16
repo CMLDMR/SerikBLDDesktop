@@ -6,10 +6,10 @@
 
 namespace Core {
 
-
 class MongoDB
 {
 private:
+
     MongoDB();
     mongocxx::client *mClient;
     mongocxx::database mDB;
