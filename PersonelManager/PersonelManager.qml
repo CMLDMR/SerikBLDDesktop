@@ -22,7 +22,7 @@ Rectangle{
 
         ScrollView{
             anchors.fill: parent
-            anchors.leftMargin: 150
+            anchors.leftMargin: 200
             ColumnLayout{
                 anchors.fill: parent
 
@@ -43,8 +43,15 @@ Rectangle{
                             border.color: "black"
                             border.width: 1
 
-                            Text {
+                            Image {
                                 id: name
+                                source: foto
+                                width: 60
+                                height: 90
+
+                            }
+
+                            Text {
                                 text: adsoyad;
                             }
                         }

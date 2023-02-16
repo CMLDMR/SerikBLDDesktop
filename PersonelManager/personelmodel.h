@@ -22,6 +22,7 @@ public:
 
     enum PersonelModelRoles{
         adSoyad = Qt::UserRole+1,
+        foto,
         birim,
         status,
         telefon,
