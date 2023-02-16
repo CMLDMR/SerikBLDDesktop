@@ -1,4 +1,5 @@
 #include "serikbldbackend.h"
+
 #include <QDebug>
 
 SerikBLDBackend::SerikBLDBackend(QQuickItem *parent)
@@ -9,7 +10,7 @@ SerikBLDBackend::SerikBLDBackend(QQuickItem *parent)
 
 void SerikBLDBackend::registerQML()
 {
-    qmlRegisterType<SerikBLDBackend>("com.serik",1,0, "SerikBLDBackend");
+    qmlRegisterType<SerikBLDBackend>("com.belediye",1,0, "SerikBLDBackend");
 }
 
 QString SerikBLDBackend::currentPage() const
@@ -29,5 +30,6 @@ void SerikBLDBackend::setCurrentPage(const QString &newCurrentPage)
 
 void SerikBLDBackend::resetCurrentPage()
 {
-    setCurrentPage({"qrc:/QML/AnaMenu.qml"}); // TODO: Adapt to use your actual default value
+    setCurrentPage({"QML/AnaMenu.qml"}); // TODO: Adapt to use your actual default value
 }
+

@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Layouts
+import com.belediye.global 1.0
 
 
 
@@ -36,7 +37,7 @@ Rectangle{
             MouseArea{
                 anchors.fill: parent
                 onClicked: {
-                    pageChanged("qrc:/QML/PersonelManager.qml");
+                    pageChanged(Global.personelPage());
                 }
             }
 
