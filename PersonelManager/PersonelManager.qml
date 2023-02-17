@@ -23,48 +23,54 @@ Rectangle{
         ScrollView{
             anchors.fill: parent
             anchors.leftMargin: 200
-            ColumnLayout{
+            Flow{
                 anchors.fill: parent
+                Layout.preferredWidth: parent.parent.width
+                spacing: 5
 
                 Repeater{
-                    Layout.fillWidth: true
 
                     model: mPersonelModel;
 
                     delegate: Rectangle{
                         color:"orange"
-                        width: _width-170
+                        width: 280
                         height: 100
 
-                        Rectangle{
-                            anchors.centerIn: parent
-                            width: parent.width-15
-                            height: parent.height-15
-                            border.color: "black"
-                            border.width: 1
 
-                            Image {
-                                id: name
-                                source: foto
-                                width: 60
-                                height: 90
+                           Image {
+                               id: personelPhotoID
+                               width: 80
+                               height: 100
+                               fillMode: Image.PreserveAspectCrop
+                               source: foto
+                               clip: true
+                               anchors.leftMargin: 0
+                           }
 
-                            }
+                           Rectangle{
+                               width: 200
+                               anchors.left: personelPhotoID.right
+                               height: parent.height
+                               color: "#AA553344"
 
-                            Text {
-                                text: adsoyad;
-                            }
-                        }
+                               ColumnLayout{
+                                   anchors.fill: parent
+                                   Text {
+                                       text: adsoyad;
+                                   }
+                                   Text {
+                                       text: telefon;
+                                   }
+                                   Text {
+                                       text: birim;
+                                   }
+                               }
+
+                           }
+
                     }
-
                 }
-
             }
-
         }
-
-
-
-
-
 }

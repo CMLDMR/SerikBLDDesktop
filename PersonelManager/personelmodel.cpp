@@ -42,8 +42,16 @@ QVariant PersonelModel::data(const QModelIndex &index, int role) const
         return QVariant{this->List()[index.row()].AdSoyad()};
         break;
     case PersonelModelRoles::foto:
+    {
         auto filePath = const_cast<SerikBLDCore::DB*>(getDB())->downloadFile(this->List()[index.row()].FotoOid());
         return QVariant{(QUrl::fromLocalFile(filePath.c_str()))};
+    }
+        break;
+    case PersonelModelRoles::telefon:
+        return QVariant{this->List()[index.row()].telefon()};
+        break;
+    case PersonelModelRoles::birim:
+        return QVariant{this->List()[index.row()].Birim()};
         break;
     }
 
@@ -63,7 +71,6 @@ void PersonelModel::onList(const QVector<SerikBLDCore::IK::Personel> *mlist)
     personelCount = mlist->size();
     for( const auto &item : *mlist ){
         auto filePath = this->getDB()->downloadFile(item.FotoOid());
-        qDebug() << filePath.c_str();
     }
     endResetModel();
 

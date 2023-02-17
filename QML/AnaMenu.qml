@@ -17,7 +17,6 @@ Rectangle{
 
         Layout.fillWidth: parent
 
-
         Rectangle{
 
             width: 250
@@ -36,11 +35,12 @@ Rectangle{
 
             MouseArea{
                 anchors.fill: parent
+                cursorShape: containsMouse ? Qt.PointingHandCursor : Qt.ArrowCursor
                 onClicked: {
                     pageChanged(Global.personelPage());
                 }
+                hoverEnabled: true
             }
-
         }
     }
 }
