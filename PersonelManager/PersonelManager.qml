@@ -12,65 +12,95 @@ Rectangle{
 
     property PersonelModel mPersonelModel: Global.getPersonelModel()
 
+    Rectangle{
+        width: parent.width
+        height: 40
+        color: "orange"
 
-
-        Rectangle{
-            width: 150
-            height: parent.height
-            color: "green"
-        }
-
-        ScrollView{
+        ToolBar {
             anchors.fill: parent
-            anchors.leftMargin: 200
-            Flow{
+            RowLayout {
                 anchors.fill: parent
-                Layout.preferredWidth: parent.parent.width
-                spacing: 5
-
-                Repeater{
-
-                    model: mPersonelModel;
-
-                    delegate: Rectangle{
-                        color:"orange"
-                        width: 280
-                        height: 100
-
-
-                           Image {
-                               id: personelPhotoID
-                               width: 80
-                               height: 100
-                               fillMode: Image.PreserveAspectCrop
-                               source: foto
-                               clip: true
-                               anchors.leftMargin: 0
-                           }
-
-                           Rectangle{
-                               width: 200
-                               anchors.left: personelPhotoID.right
-                               height: parent.height
-                               color: "#AA553344"
-
-                               ColumnLayout{
-                                   anchors.fill: parent
-                                   Text {
-                                       text: adsoyad;
-                                   }
-                                   Text {
-                                       text: telefon;
-                                   }
-                                   Text {
-                                       text: birim;
-                                   }
-                               }
-
-                           }
-
+                ToolButton {
+                    id: personemMenuID
+                    text: qsTr("Personel")
+                    onClicked: contextMenu.popup()
+                    Menu {
+                        id: contextMenu
+                        MenuItem { text: "Cut" }
+                        MenuItem { text: "Copy" }
+                        MenuItem { text: "Paste" }
                     }
+                }
+
+                ToolButton {
+                    text: qsTr("Müdürlükler")
                 }
             }
         }
+
+
+
+
+
+    }
+
+
+
+    ScrollView{
+        anchors.fill: parent
+        anchors.topMargin: 50
+        contentWidth: parent.width
+        leftPadding: 15
+        rightPadding: 15
+        Flow{
+            anchors.fill: parent
+            Layout.preferredWidth: parent.parent.width
+            spacing: 5
+
+            Repeater{
+
+                model: mPersonelModel;
+
+                delegate: Rectangle{
+                    color:"orange"
+                    width: 280
+                    height: 100
+
+
+                    Image {
+                        id: personelPhotoID
+                        width: 80
+                        height: 100
+                        fillMode: Image.PreserveAspectCrop
+                        source: foto
+                        clip: true
+                        anchors.leftMargin: 0
+                    }
+
+                    Rectangle{
+                        width: 200
+                        anchors.left: personelPhotoID.right
+                        height: parent.height
+                        color: "#AA553344"
+
+                        ColumnLayout{
+                            anchors.fill: parent
+                            Text {
+                                text: adsoyad;
+                            }
+                            Text {
+                                text: telefon;
+                            }
+                            Text {
+                                text: birim;
+                            }
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
 }

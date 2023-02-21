@@ -4,6 +4,7 @@
 #include "personel.h"
 #include <QDebug>
 #include <QUrl>
+#include <QDir>
 
 using bsoncxx::builder::basic::document;
 
@@ -30,7 +31,6 @@ int PersonelModel::rowCount(const QModelIndex &parent) const
     return this->List().size();
 }
 
-#include <QDir>
 
 QVariant PersonelModel::data(const QModelIndex &index, int role) const
 {
