@@ -8,6 +8,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -55,8 +56,9 @@ target_include_directories(appSerikBLDDesktopQML PUBLIC "${CMAKE_CURRENT_SOURCE_
 
 target_link_directories(appSerikBLDDesktopQML PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../MSVC2022x64noBoost/lib")
 
-#target_link_libraries(appSerikBLDDesktopQML SerikBLDCore)
-
+target_include_directories(appSerikBLDDesktopQML PUBLIC "C:/Mongo/mongoCPPCore/install/include")
+target_link_directories(appSerikBLDDesktopQML PUBLIC "C:/Mongo/mongoCPPCore/install/lib")
+target_link_libraries(appSerikBLDDesktopQML PRIVATE MongoCore)
 
 set_target_properties(appSerikBLDDesktopQML PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
