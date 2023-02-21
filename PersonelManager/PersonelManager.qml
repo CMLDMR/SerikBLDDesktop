@@ -13,6 +13,7 @@ Rectangle{
     property PersonelModel mPersonelModel: Global.getPersonelModel()
 
     Rectangle{
+        id: personelToolBarid
         width: parent.width
         height: 40
         color: "orange"
@@ -20,29 +21,36 @@ Rectangle{
         ToolBar {
             anchors.fill: parent
             RowLayout {
-                anchors.fill: parent
+                Layout.preferredWidth: parent.width
+                Layout.preferredHeight: parent.height
                 ToolButton {
                     id: personemMenuID
                     text: qsTr("Personel")
-                    onClicked: contextMenu.popup()
-                    Menu {
-                        id: contextMenu
-                        MenuItem { text: "Cut" }
-                        MenuItem { text: "Copy" }
-                        MenuItem { text: "Paste" }
-                    }
+                    onClicked: contextMenu.open()
                 }
 
                 ToolButton {
+                    id: birimMenuID
                     text: qsTr("Müdürlükler")
+                    onClicked: birimContextMenuID.open()
                 }
             }
         }
 
+    }
 
 
+    Menu {
+        id: contextMenu
+        MenuItem { text: "Yeni Ekle" }
+        y: personelToolBarid.height
+    }
 
-
+    Menu {
+        id: birimContextMenuID
+        MenuItem { text: "Yeni Birim Ekle" }
+        y: personelToolBarid.height
+        x: birimMenuID.x
     }
 
 
@@ -85,20 +93,40 @@ Rectangle{
                         color: "#AA553344"
 
                         ColumnLayout{
-                            anchors.fill: parent
+                            Layout.preferredWidth: parent.width
                             Text {
                                 text: adsoyad;
+                                color: "white"
                             }
                             Text {
                                 text: telefon;
+                                color: "white"
                             }
                             Text {
                                 text: birim;
+                                color: "white"
                             }
                         }
 
                     }
 
+                    MouseArea{
+                        anchors.fill: parent
+
+                        onClicked: personelItemContextMenuID.open()
+                    }
+
+
+                    Menu {
+                        id: personelItemContextMenuID
+                        y: personelPhotoID.height
+                        x: personelPhotoID.x
+                        MenuItem { text: "Bilgileri Değiştir" }
+                        MenuItem { text: "Birim Değiştir" }
+                        MenuItem { text: "Telefon No Değiştir Değiştir" }
+                        MenuItem { text: "Ad Soyad Değiştir" }
+
+                    }
                 }
             }
         }
