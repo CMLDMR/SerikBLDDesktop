@@ -7,7 +7,7 @@ Window {
     width: 1280
     height: 780
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Serik Belediyesi")
 
     SerikBLDBackend{
         id: backendManager
